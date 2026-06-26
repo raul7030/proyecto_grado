@@ -1,0 +1,214 @@
+/* src/pages/HomePage.module.css */
+
+.homeContainer {
+    padding-bottom: 40px;
+}
+
+.chartContainer {
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+}
+
+/* Bordes para las tarjetas de KPIs Gerenciales */
+.kpiBorderSuccess {
+    border-left: 5px solid #16a34a !important;
+}
+
+.kpiBorderInfo {
+    border-left: 5px solid #0284c7 !important;
+}
+
+.kpiBorderWarning {
+    border-left: 5px solid #f59e0b !important;
+}
+
+.kpiBorderPurple {
+    border-left: 5px solid #8b5cf6 !important;
+}
+
+/* Contenedor de filtros gerenciales */
+.filterContainer {
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.tableWrapperOverride {
+    box-shadow: none !important;
+    border: 1px solid #dee2e6;
+}
+
+.letraAzul {
+    color: #1e3672 !important;
+}
+
+.homeContainer {
+    padding: 20px;
+    background-color: #f8f9fc;
+    min-height: 100vh;
+}
+
+.kpiCard {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.letraAzul {
+    color: #4e73df;
+}
+
+/* Bordes laterales para KPIs */
+.kpiBorderSuccess { border-left: 4px solid #1cc88a !important; }
+.kpiBorderInfo { border-left: 4px solid #36b9cc !important; }
+.kpiBorderWarning { border-left: 4px solid #f6c23e !important; }
+
+/* src/pages/HomePage.module.css */
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+.homeContainer {
+    animation: fadeIn 0.3s ease-in-out;
+    padding: 1.5rem;
+}
+
+/* =========================================================
+   CONTROLES DE FILTRADO
+   ========================================================= */
+.filterContainer {
+    background-color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* =========================================================
+   TARJETAS DE INDICADORES CLAVE (KPIs)
+   ========================================================= */
+.kpiCard {
+    background-color: #ffffff;
+    border: 0;
+    border-left-width: 4px;
+    border-left-style: solid;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    height: 100%;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpiCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
+}
+
+/* Colores de bordes izquierdo para KPIs */
+.borderPrimary { border-left-color: #0d6efd; }
+.borderSuccess { border-left-color: #198754; }
+.borderWarning { border-left-color: #ffc107; }
+.borderInfo { border-left-color: #0dcaf0; }
+
+/* Tipografía de etiquetas KPI */
+.kpiLabelPrimary { color: #0d6efd; font-weight: bold; text-transform: uppercase; }
+.kpiLabelSuccess { color: #198754; font-weight: bold; text-transform: uppercase; }
+.kpiLabelWarning { color: #ffc107; font-weight: bold; text-transform: uppercase; }
+.kpiLabelInfo { color: #0dcaf0; font-weight: bold; text-transform: uppercase; }
+
+/* =========================================================
+   TARJETAS DE GRÁFICOS Y TABLAS COMPLEJAS
+   ========================================================= */
+.chartCard {
+    background-color: #ffffff;
+    border: 0;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    height: 100%;
+    padding: 1rem;
+    border-radius: 0.375rem;
+}
+
+.chartTitle {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #6c757d;
+}
+
+/* Contenedores delimitadores para Recharts */
+.barChartContainer {
+    height: 300px;
+}
+
+.pieChartContainer {
+    height: 250px;
+}
+
+/* Leyenda personalizada del gráfico circular */
+.pieChartLegend {
+    text-align: center;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+.legendColorSuccess { color: #16a34a; }
+.legendColorWarning { color: #f59e0b; }
+.legendColorDanger { color: #dc2626; }
+
+/* =========================================================
+   TABLAS Y DETALLES (Rendimiento y Stock)
+   ========================================================= */
+.tableHeader {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    font-weight: bold;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo copiado del módulo comercial para mantener uniformidad */
+.noHoverTable th {
+    background-color: #f8f9fa !important;
+    color: #495057 !important;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.criticalStockItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.emptyStateContainer {
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+/* =========================================================
+   ANIMACIONES GLOBALES
+   ========================================================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Altura específica para el panel del Top 10 */
+.topProductsChartContainer {
+    height: 350px;
+    width: 100%;
+}

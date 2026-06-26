@@ -1,0 +1,129 @@
+/* src/pages/PerfilCliente.module.css */
+
+/* ==========================================================================
+   Estructura Base y Contenedores
+   ========================================================================== */
+.contenedorPrincipal {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* ==========================================================================
+   Tarjetas de Indicadores (KPIs)
+   ========================================================================== */
+.kardexCard {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.kardexCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
+}
+
+/* Aplicando el color azul corporativo San Rafael a las tarjetas */
+.kardexCardPrimary {
+    border-left-color: #1e3672; 
+}
+
+/* ==========================================================================
+   Texto y Acentos
+   ========================================================================== */
+.textPrimaryCustom {
+    color: #1e3672 !important;
+}
+
+/* ==========================================================================
+   Navegación por Pestañas (Tabs)
+   ========================================================================== */
+.navTabsCustom {
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 1.5rem;
+}
+
+.navButtonCustom {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: #6c757d;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.navButtonCustom:hover {
+    color: #1e3672;
+}
+
+/* Pestaña activa con el color corporativo */
+.navButtonActive {
+    color: #1e3672 !important;
+    border-bottom-color: #1e3672 !important;
+}
+
+/* ==========================================================================
+   Estilos de Tablas Dinámicas (Heredado de Clientes)
+   ========================================================================== */
+.noHoverTable th {
+    background-color: #1e3672 !important;
+    color: white !important;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: solid 1px transparent; /* Previene saltos visuales en el hover */
+}
+
+.noHoverTable th:hover {
+    background-color: #ffffff !important;
+    color: #1e3672 !important;
+    border: solid 1px #1e3672 !important;
+    cursor: default;
+}
+
+/* Sutil fondo azul corporativo al pasar el ratón por las filas */
+.tableRowHover:hover td {
+    background-color: rgba(30, 54, 114, 0.05); 
+}
+
+/* ==========================================================================
+   Botones de Acción
+   ========================================================================== */
+.buttonPrimary {
+    background-color: #1e3672 !important;
+    color: white !important;
+    border-color: #1e3672 !important;
+}
+
+.buttonPrimary:hover {
+    background-color: #152650 !important; /* Tono más oscuro al hacer hover */
+    color: white !important;
+}
+
+.buttonOutlinePrimary {
+    color: #1e3672 !important;
+    border-color: #1e3672 !important;
+    background-color: transparent;
+    transition: all 0.2s;
+}
+
+.buttonOutlinePrimary:hover {
+    background-color: #1e3672 !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Animaciones
+   ========================================================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

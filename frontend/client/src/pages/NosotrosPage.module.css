@@ -1,0 +1,96 @@
+/* src/pages/NosotrosPage.module.css */
+
+.pageContainer {
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+.heroSection {
+    background: linear-gradient(135deg, #1e3672 0%, #0ea5e9 100%);
+    color: white;
+    padding: 80px 0;
+    margin-bottom: 40px;
+}
+
+.aboutImage {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.aboutImage:hover {
+    transform: scale(1.02);
+}
+
+.visionCard {
+    background-color: #ffffff;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border-top: 4px solid transparent !important;
+}
+
+.visionCard:hover {
+    transform: translateY(-5px);
+    border-top: 4px solid #1e3672 !important;
+    box-shadow: 0 10px 25px rgba(30, 54, 114, 0.1) !important;
+}
+
+.iconCircle {
+    width: 60px;
+    height: 60px;
+    background-color: #e0f2fe;
+    color: #1e3672;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 20px;    
+    overflow: hidden;
+}
+
+.iconCircle img {
+    height: 80%;
+    width: auto;
+    object-fit: cover;
+}
+
+.ctaSection {
+    background-color: #1e3672;
+    margin-top: 40px;
+    border-top: 5px solid #0ea5e9;
+}
+
+.ctaButton {
+    color: #1e3672;
+    transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.letraAzul {
+    color: #1e3672;
+}
+
+.letraCeleste {
+    color: var(--color-secondary);
+}
+
+.buttonsecondary {
+    background-color: #6494ce !important;
+    border-color: #6494ce !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+.buttonsecondary:hover {
+    background-color: #ffffff !important;
+    border-color: #1e3672 !important;
+    color: #1e3672 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(30, 54, 114, 0.3);
+}

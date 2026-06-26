@@ -1,0 +1,201 @@
+/* src/pages/ProductosPage.module.css */
+
+.pageContainer {
+    width: 100%; 
+    padding: 20px 15px;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+@media (min-width: 768px) {
+    .pageContainer {
+        padding: 30px;
+    }
+}
+
+/* Estilos para encabezados de tabla corporativos */
+.noHoverTable th {
+    background-color: #1e3672 !important;
+    color: white !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.noHoverTable th:hover {
+    background-color: #ffffff !important;
+    color: #1e3672 !important;
+    border: solid 1px #1e3672 !important;
+    cursor: default;
+}
+
+/* Contenedor de botones de accion */
+.actionButtonsContainer {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* ETIQUETAS DE ESTADO DE STOCK (Badges) */
+.badgeStock {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85em;
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.badgeOk {
+    background-color: #198754;
+    color: #ffffff;
+}
+
+.badgeBajo {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.badgeAgotado {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+/* Superposicion del modal (Backdrop) */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99998;
+    padding: 15px;
+}
+
+/* Garantia de opacidad absoluta para los modales */
+.solidModal {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+}
+
+/* =========================================================
+   ESTILOS PARA LA CARGA DE IMAGEN EN EL MODAL DE PRODUCTO
+   ========================================================= */
+.imageSection {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.imagePreviewContainer {
+    width: 130px;
+    height: 130px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ced4da;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.imagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imagePlaceholder {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.imageUploadWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Ocultamos el input de tipo archivo nativo del navegador */
+.formInputFileHidden {
+    display: none;
+}
+
+/* El Label que actúa como botón */
+.imageUploadButton {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #1e3672;
+    border: 2px solid #1e3672;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    width: fit-content;
+}
+
+.imageUploadButton:hover {
+    background-color: #1e3672;
+    color: #ffffff;
+}
+
+/* Hacerlo responsive para móviles pequeños */
+@media (max-width: 576px) {
+    .imageSection {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .imageUploadWrapper {
+        align-items: center;
+    }
+}
+
+.scrollableBody {
+    max-height: 65vh; /* Ocupará máximo el 65% de la altura de la pantalla */
+    overflow-y: auto; /* Activa el scroll vertical solo si es necesario */
+    padding-right: 10px; /* Pequeño margen para que la barra de scroll no pise el texto */
+}
+
+/* Opcional: Para estilizar la barra de scroll y que se vea más fina y elegante (estilo Mac/Windows 11) */
+.scrollableBody::-webkit-scrollbar {
+    width: 8px;
+}
+.scrollableBody::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 4px;
+}
+.scrollableBody::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 4px;
+}
+.scrollableBody::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; 
+}
+
+.buttonPrimary {
+    background-color: #1e3672 !important;
+    color: #ffffff !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}

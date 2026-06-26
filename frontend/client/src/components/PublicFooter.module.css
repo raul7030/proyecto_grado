@@ -1,0 +1,16 @@
+/* src/components/PublicFooter.module.css */
+
+.bgFooter {
+    /* Usa el azul oscuro de tu paleta, o un gris muy oscuro si prefieres */
+    background-color: var(--color-primary, #1e3672); 
+    color: white;
+}
+
+/* Efecto para que los enlaces se iluminen al pasar el ratón */
+.hoverWhite {
+    transition: color 0.3s ease;
+}
+
+.hoverWhite:hover {
+    color: var(--color-white, #ffffff) !important;
+}

@@ -1,0 +1,156 @@
+/* src/pages/LandingPage.module.css */
+
+:root {
+  /* --- PALETA DE COLORES SAN RAFAEL --- */
+  --color-primary: #1e3672;    /* Azul Oscuro (Logo) */
+  --color-secondary: #6494ce;  /* Azul Claro (Logo) */
+  --color-accent: #bb262c;     /* Rojo (Logo) */
+  
+  --color-bg: #f4f7fa;         /* Fondo gris muy suave para la app */
+  --color-text: #333333;       /* Texto general */
+  --color-white: #ffffff;
+}
+
+.cImgFit {
+    height: 87vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.landingContainer {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* NUEVAS CLASES PARA EL CONTENIDO */
+.aboutImage {
+    object-fit: cover;
+}
+
+.productImageContainer {
+    height: 260px;
+    background: #f9f9f9;
+}
+
+.productImage {
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.applicationImage {
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+/* MARCAS */
+.marcasContainer {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.marcasTrack {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.marcaLogo {
+    height: 60px;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.carouselButtonIcon {
+    background-size: 50%;
+}
+
+/* =========================================
+   ANIMACIÓN DE MARCAS (CINTA INFINITA)
+   ========================================= */
+.marcasContainer {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.marcasTrack {
+    display: inline-block;
+    animation: scrollMarcas 30s linear infinite;
+}
+
+/* Pausar la animación cuando el usuario pone el mouse encima (Opcional pero recomendado) */
+.marcasTrack:hover {
+    animation-play-state: paused;
+}
+
+.marcaItem {
+    display: inline-block;
+    padding: 0 40px;
+    vertical-align: middle;
+}
+
+.marcaItemImg {
+    height: 60px;
+    filter: grayscale(100%); /* Logos en gris por defecto */
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.marcaItemImg:hover {
+    filter: grayscale(0%); /* Color al pasar el mouse */
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+@keyframes scrollMarcas {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* text-h2 para dar color principal al h2 */
+.textTitulos {
+    color: var(--color-primary);
+}
+
+/* =========================================
+   OVERRIDE DE BOOTSTRAP (BOTONES) (GLOBAL SIRVE PARA PODER MODIFICAR LOS BOTONES DE BOOTSTRAP DESDE ESTE CSS)
+   ========================================= */
+:global(.btn-outline-primary) {
+    background-color: var(--color-white) !important;
+    color: var(--color-primary) !important;
+    border: 2px solid var(--color-primary) !important;
+    font-weight: 600;
+}
+
+/* Y le damos el efecto hover para que se pinte al pasar el mouse */
+:global(.btn-outline-primary:hover) {
+    background-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
+}
+
+/* También podemos cambiar el color del título azul ("Nuestros Productos Destacados") */
+:global(.text-primary) {
+    color: var(--color-primary) !important;
+}
+
+.textmedium{
+    font-size: 1rem !important;
+}
+
+.buttonprimary {
+    background-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
+    border: 2px solid var(--color-primary) !important;
+    font-weight: 600;
+}
+
+.buttonprimary:hover {
+    background-color: var(--color-white) !important;
+    color: var(--color-primary) !important;
+}

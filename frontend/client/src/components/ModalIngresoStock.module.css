@@ -1,0 +1,96 @@
+/* src/components/ModalIngresoStock.module.css */
+
+/* =========================================================
+   COMPONENTE MODAL (Aislamiento de opacidad)
+   ========================================================= */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1040;
+}
+
+.modalContentSolid {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1050;
+    width: 90%;
+    max-width: 550px;
+    opacity: 1;
+}
+
+/* =========================================================
+   ESTRUCTURA DEL CONTENIDO
+   ========================================================= */
+.modalHeader {
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 16px;
+}
+
+.modalTitle {
+    margin: 0;
+    color: var(--color-primary, #1e3672);
+    font-size: 1.5rem;
+}
+
+.modalSubtitle {
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+/* =========================================================
+   ESTRUCTURA DEL FORMULARIO
+   ========================================================= */
+.formGroup {
+    margin-bottom: 16px;
+}
+
+.formRow {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.formGroupHalf {
+    flex: 1;
+}
+
+.formLabel {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.formInput {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.formInput:focus {
+    border-color: #1e3672;
+    outline: none;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+}

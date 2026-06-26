@@ -1,0 +1,30 @@
+/* src/pages/SucursalFormPage.module.css */
+
+.pageContainer {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Fuerza la opacidad al 100% y fondo blanco absoluto */
+.solidCard {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+}
+
+.solidHeader {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+.solidBody {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Asegura que los campos de entrada sean sólidos */
+.solidInput {
+    background-color: #f8f9fa !important; 
+    color: #212529 !important; 
+    opacity: 1 !important;
+}

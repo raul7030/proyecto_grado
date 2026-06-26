@@ -1,0 +1,62 @@
+/* src/components/DashboardLayout.module.css */
+
+.layoutContainer {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    position: relative;
+    /* Bloqueo absoluto de scroll horizontal a nivel global */
+    overflow-x: hidden; 
+    width: 100%;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    
+    /* BASE PARA MÓVILES: Siempre respeta los 80px del mini-menú */
+    margin-left: 80px;
+    width: calc(100% - 80px);
+}
+
+/* El área interior con padding */
+.pageWrapper {
+    padding: 15px;
+    flex-grow: 1;
+    /* Bloquea que las tablas gigantes rompan el contenedor */
+    max-width: 100%; 
+    overflow-x: hidden; 
+}
+
+/* =========================================================
+   REGLAS MÓVILES (Bootstrap col-sm hacia abajo)
+   El contenido ocupa 100%. El sidebar flota con z-index.
+========================================================= */
+@media (max-width: 767.98px) {
+    .mainContent, .collapsed {
+        margin-left: 80px !important;
+        width: calc(100% - 80px) !important;
+    }
+}
+
+/* =========================================================
+   REGLAS ESCRITORIO (Bootstrap col-md hacia arriba)
+   El contenido es empujado por el menú lateral.
+========================================================= */
+@media (min-width: 768px) {
+    .mainContent {
+        margin-left: 250px; /* Ancho del menú abierto por defecto en PC */
+        width: calc(100% - 250px);
+    }
+    
+    .collapsed {
+        margin-left: 80px; /* Si el usuario decide cerrar el menú en PC */
+        width: calc(100% - 80px);
+    }
+    
+    .pageWrapper {
+        padding: 24px; 
+    }
+}

@@ -1,0 +1,153 @@
+/* src/components/SideBar.module.css */
+
+/* src/components/SideBar.module.css */
+
+.sidebar { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0; 
+    
+    /* El Rey Absoluto de las Capas */
+    z-index: 9999 !important; 
+    
+    /* Fallback de altura para navegadores móviles */
+    height: 100vh;
+    height: 100dvh; 
+
+    background: #1e3672; 
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.15);
+    transition: width 0.3s ease-in-out;
+    white-space: nowrap;
+    
+    /* Para que el scroll interno funcione sin cortar botones */
+    overflow-y: auto !important; 
+    overflow-x: hidden !important;
+}
+
+.toggleButton {
+    /* Un tono ligeramente más oscuro que el fondo para diferenciar */
+    background: #152650; 
+    border: none;
+    color: #6494ce; /* Flecha en azul claro */
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background 0.2s;
+    outline: none;
+}
+.toggleButton:hover {
+    background: #6494ce;
+    color: white;
+}
+
+.sidebarHeader {
+    padding: 1.5rem 0;
+    text-align: center;
+    background: #152650; /* Header un poco más oscuro */
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #bb262c; /* Línea roja sutil debajo del logo */
+}
+
+.sidebarHeader h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.navMenu {
+    flex-grow: 1;
+    padding: 1rem 0;
+    overflow-y: auto;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #dbe4f0; /* Blanco no tan brillante para texto inactivo */
+    text-decoration: none;
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+}
+
+/* HOVER y ACTIVE: Usamos el Azul Claro y fondo suave */
+.navItem:hover {
+    background-color: rgba(100, 148, 206, 0.15); /* Azul claro con transparencia */
+    color: #ffffff;
+    border-left: 4px solid #6494ce; /* Borde azul claro */
+}
+
+.navIcon {
+    font-size: 1.2rem;
+    min-width: 40px;
+    text-align: center;
+    color: #6494ce; /* Iconos en azul claro */
+}
+.navItem:hover .navIcon {
+    color: #ffffff;
+}
+
+.navLabel {
+    font-size: 0.95rem;
+    margin-left: 10px;
+}
+
+.separator {
+    height: 1px;
+    background-color: #6494ce;
+    opacity: 0.3;
+    margin: 10px 20px;
+}
+
+.sidebarFooter {
+    background-color: #152650;
+    padding: 1rem;
+    border-top: 1px solid #6494ce; /* Separador sutil */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.userInfo {
+    font-size: 0.85rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* BOTÓN SALIR: Usamos el ROJO de la marca */
+.logoutButton {
+    background-color: #bb262c; /* ROJO PURO */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoutButton:hover {
+    background-color: #a01d22; /* Rojo más oscuro al hover */
+}
+
+.logoutButton:active {
+    transform: scale(0.98);
+}

@@ -1,0 +1,147 @@
+/* src/pages/ServiciosPage.module.css */
+
+.pageContainer {
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+.heroSection {
+    background: linear-gradient(135deg, #1e3672 0%, #172554 100%);
+    color: white;
+    padding: 80px 0;
+    margin-bottom: 40px;
+}
+
+/* Badges decorativos */
+.badgePrimary {
+    background-color: #6494ce;
+    color: #0284c7;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.badgeSecondary {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+/* Tarjetas de Servicio Técnico */
+.serviceCard {
+    background-color: #ffffff;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border-bottom: 4px solid transparent !important;
+}
+
+.serviceCard:hover {
+    transform: translateY(-8px);
+    border-bottom: 4px solid #0ea5e9 !important;
+    box-shadow: 0 15px 30px rgba(30, 54, 114, 0.08) !important;
+}
+
+.iconCircle {
+    width: 70px;
+    height: 70px;
+    background-color: #f8fafc;
+    color: #1e3672;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.iconCircle img {
+    height: 80%;
+    width: auto;
+    object-fit: cover;
+}
+
+.serviceCard:hover .iconCircle {
+    border: 2px solid #1e3672;
+    color: #ffffff;
+}
+
+/* Sección de Perforación de Pozos */
+.wellFeatures {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.featureItem {
+    display: flex;
+    align-items: flex-start;
+    font-size: 1.05rem;
+}
+
+.featureItem i {
+    font-size: 1.5rem;
+    margin-top: 3px;
+}
+
+.imageWrapper {
+    position: relative;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.floatingBadge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #1e3672;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+    text-align: center;
+    border: 3px solid #ffffff;
+}
+
+/* Call to Action */
+.ctaSection {
+    background-color: #1e3672;
+    margin-top: 60px;
+}
+
+.ctaButton {
+    color: #1e3672;
+    transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.letraAzul {
+    color: #1e3672;
+}
+
+.fotoico {
+    object-fit: cover;
+}
+
+.buttonsecondary {
+    background-color: #6494ce !important;
+    border-color: #6494ce !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+}
+
+.buttonsecondary:hover {
+    background-color: #ffffff !important;
+    border-color: #1e3672 !important;
+    color: #1e3672 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(30, 54, 114, 0.3);
+}

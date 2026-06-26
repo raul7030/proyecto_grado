@@ -1,0 +1,71 @@
+/* src/pages/SucursalesPage.module.css */
+
+.noHoverTable th {
+    background-color: #1e3672 !important;
+    color: white !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.noHoverTable th:hover {
+    background-color: #ffffff !important;
+    color: #1e3672 !important;
+    border: solid 1px #1e3672 !important;
+    cursor: default;
+}
+
+.actionButtonsContainer {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* =========================================
+   ESTILOS DEL MODAL (Fondo y Opacidad)
+========================================= */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99998;
+    padding: 15px;
+}
+
+.solidModal {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* =========================================
+   ESTILOS DEL CONTENEDOR PRINCIPAL
+========================================= */
+.pageContainer {
+    width: 100%; 
+    padding: 20px 15px;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+@media (min-width: 768px) {
+    .pageContainer {
+        padding: 30px;
+    }
+}
+
+.buttonPrimary {
+    background-color: #1e3672 !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease-in-out;
+}

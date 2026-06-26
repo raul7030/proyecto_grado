@@ -1,0 +1,132 @@
+/* src/pages/ProductoFormPage.module.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.headerForm {
+    margin-bottom: 20px;
+}
+
+.titleForm {
+    text-align: center;
+    color: var(--color-primary, #1e3672);
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.formCard {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formRow {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.formGroupHalf {
+    flex: 1;
+}
+
+.formLabel {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.formInput {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box; /* Previene desbordes en el contenedor */
+}
+
+.formInput:focus {
+    border-color: #1e3672;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 54, 114, 0.1);
+}
+
+textarea.formInput {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.btnSubmit {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 25px 0;
+}
+
+.imageSection {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px dashed #ced4da;
+}
+
+.imagePreviewContainer {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.imagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imagePlaceholder {
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.imageUploadWrapper {
+    flex-grow: 1;
+}
+
+/* Hacer la sección de imagen responsive para móviles */
+@media (max-width: 576px) {
+    .imageSection {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

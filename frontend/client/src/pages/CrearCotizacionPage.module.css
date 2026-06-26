@@ -1,0 +1,65 @@
+/* src/pages/CrearCotizacionPage.module.css */
+
+.pageContainer {
+    width: 100%; 
+    padding: 20px 15px;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+@media (min-width: 768px) {
+    .pageContainer {
+        padding: 30px;
+    }
+}
+
+/* Contenedor relativo para posicionar el dropdown */
+.autocompleteWrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Lista flotante de resultados */
+.autocompleteDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 1050;
+    margin-top: 4px;
+    padding: 0;
+    list-style: none;
+}
+
+.autocompleteItem {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+.autocompleteItem:last-child {
+    border-bottom: none;
+}
+
+.autocompleteItem:hover {
+    background-color: #f1f5f9;
+}
+
+.autocompleteItemDisabled {
+    padding: 10px 15px;
+    color: #94a3b8;
+    background-color: #f8fafc;
+    cursor: not-allowed;
+}
+
+/* Acciones de la tabla */
+.actionBtnSmall {
+    padding: 4px 8px;
+}

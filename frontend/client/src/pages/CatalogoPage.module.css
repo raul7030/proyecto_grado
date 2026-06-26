@@ -1,0 +1,178 @@
+/* src/pages/CatalogoPage.module.css */
+
+.catalogoHeader {
+    background: linear-gradient(to right, var(--color-primary, #1e3672), var(--color-secondary, #6494ce));
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* --- FILTROS (Botones tipo Píldora) --- */
+.filtrosContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.btnFiltro {
+    background-color: transparent;
+    color: var(--color-primary, #1e3672);
+    border: 2px solid var(--color-primary, #1e3672);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btnFiltro:hover, .btnFiltroActivo {
+    background-color: var(--color-primary, #1e3672);
+    color: white;
+}
+
+/* --- TARJETAS DE PRODUCTOS --- */
+.productoCard {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.productoCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.imgContainer {
+    height: 250px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productoImg {
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.skuText {
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.descripcionText {
+    font-size: 0.9rem;
+    color: #555;
+    flex-grow: 1; /* Empuja el botón hacia abajo */
+}
+
+/* --- VENTANA MODAL (Para ver el stock por sucursal) --- */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Por encima de todo */
+    backdrop-filter: blur(5px);
+}
+
+.modalContent {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    position: relative;
+    animation: slideUp 0.3s ease-out;
+}
+
+.btnCerrarModal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+}
+
+.btnCerrarModal:hover {
+    color: #d9534f;
+}
+
+.sucursalItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.sucursalItem:last-child {
+    border-bottom: none;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btnCotizacionHeader {
+    color: #1e3672 !important;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btnCotizacionHeader:hover {
+    background-color: #1e3672 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+.buttonprimary{
+    background-color: var(--color-primary) !important;
+    color: #ffffff;
+    border: #ffffff !important;
+}
+
+.buttonprimary:hover {
+    background-color: white !important;
+    color: #1e3672 !important;
+    border: #1e3672 !important;
+    transform: translateY(-2px);
+    border: solid 2px #1e3672 !important;
+}
+
+.buttonsecondary {
+    background-color: var(--color-secondary) !important;
+    color: #ffffff !important;
+    border: #ffffff !important;
+}
+
+.buttonsecondary:hover {
+    background-color: white !important;
+    color: #6494ce !important;
+    border: #6494ce !important;
+    transform: translateY(-2px);
+    border: solid 2px #6494ce !important;
+}
+
+.letraAzul {
+    color: var(--color-primary) !important;
+}

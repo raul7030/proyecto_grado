@@ -1,0 +1,186 @@
+/* src/pages/DetalleCotizacionPage.module.css */
+
+/* --- Utilidades de Espaciado y Layout --- */
+.mb20 { margin-bottom: 20px; }
+.mt15 { margin-top: 15px; }
+.mt5 { margin-top: 5px; }
+.flex1 { flex: 1; }
+.flex3 { flex: 3; }
+
+/* --- Cabecera y Textos --- */
+.highlightId { color: #0284c7; }
+.infoValue { font-size: 1.1rem; font-weight: bold; color: #334155; }
+
+/* --- Control de Estado --- */
+.cardVariant { background-color: #f8fafc; border: 1px solid #e2e8f0; }
+.estadoRow { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+.cambiarEstadoBox { padding: 15px; background-color: white; border-radius: 8px; border: 1px solid #e2e8f0; }
+.labelBold { display: block; margin-bottom: 8px; font-weight: bold; }
+.actionRow { display: flex; gap: 10px; }
+
+/* --- Tabla de Productos --- */
+.tableWrapper { box-shadow: none; border: 1px solid #e2e8f0; }
+
+/* 🛑 Anchos de columna específicos para pantalla e impresión */
+.colSku { width: 15%; }
+.colDesc { width: 45%; }
+.colQty { width: 10%; text-align: center; }
+.colPrice { width: 15%; text-align: right; }
+.colSubtotal { width: 15%; text-align: right; }
+
+.noHoverTable th {
+    background-color: #f8f9fa !important;
+    color: #444 !important;
+}
+
+.noHoverTable th:hover {
+    background-color: #f8f9fa !important;
+    cursor: default;
+}
+
+.textCenter { text-align: center; }
+.textRight { text-align: right; }
+.qtyCell { text-align: center; font-weight: bold; }
+.subtotalCell { text-align: right; font-weight: bold; color: #0284c7; }
+
+/* --- Totales --- */
+.totalsWrapper { display: flex; justify-content: flex-end; margin-top: 20px; }
+.totalsBox { width: 300px; background-color: #f1f5f9; padding: 20px; border-radius: 8px; }
+.totalRow { display: flex; justify-content: space-between; margin-bottom: 10px; color: #64748b; }
+.discountRow { display: flex; justify-content: space-between; margin-bottom: 15px; color: #dc2626; }
+.finalTotalRow { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 900; color: #16a34a; border-top: 2px solid #cbd5e1; padding-top: 10px; }
+
+/* --- Formulario CRM (Seguimientos) --- */
+.crmForm { margin-bottom: 30px; background-color: #f8fafc; padding: 20px; border-radius: 8px; border: 1px dashed #cbd5e1; }
+.crmFormRow { align-items: flex-start; }
+.fullWidthInput { width: 100%; }
+.textAreaCrm { width: 100%; min-height: 80px; padding: 10px; }
+.btnAlignRight { text-align: right; }
+
+/* --- Historial (Timeline) --- */
+.timelineTitle { color: #64748b; margin-bottom: 15px; }
+.timelineWrapper { display: flex; flex-direction: column; gap: 15px; }
+.timelineItem { border-left: 4px solid #38bdf8; padding: 15px; background-color: #f0f9ff; border-radius: 0 8px 8px 0; }
+.timelineHeader { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.timelineType { color: #0284c7; font-weight: bold; }
+.timelineDate { font-size: 0.85rem; }
+.timelineNote { margin: 0; color: #334155; }
+.timelineAuthor { margin-top: 10px; font-size: 0.8rem; color: #94a3b8; }
+
+/* --- Badges --- */
+.badgeLarge { font-size: 1rem; padding: 8px 12px; }
+
+/* =========================================================
+   MAGIA DE IMPRESIÓN (Cotización Formal Profesional)
+   ========================================================= */
+.printArea {}
+.noPrint {}
+
+/* Encabezado elegante solo para impresión */
+.printOnlyHeader {
+    display: none;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.printOnlyHeader h2 { margin: 0; font-size: 1.6rem; color: #0f172a; letter-spacing: 1px; }
+.printOnlyHeader p { margin: 5px 0; font-size: 1rem; color: #475569; }
+.printOnlyHeader hr { border-top: 2px solid #0f172a; margin-top: 15px; }
+
+@media print {
+    /* Ajustes físicos de la hoja */
+    @page {
+        margin: 1.5cm; /* Márgenes profesionales para que no se corte el borde */
+        size: auto;
+    }
+
+    :global(body *) { visibility: hidden; }
+    
+    :global(aside), :global(nav), :global(.sidebar) {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    /* Extraer nuestra área al borde de la hoja */
+    .printArea {
+        visibility: visible !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        background-color: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .printArea :global(*) { visibility: visible !important; }
+
+    /* Ocultar elementos web no deseados */
+    .printArea .noPrint, .printArea .noPrint :global(*) {
+        display: none !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    /* Mostrar encabezado formal */
+    .printOnlyHeader { display: block !important; }
+
+    /* Forzar 1 sola columna y anchos controlados */
+    :global(.dashboard-widgets-grid) {
+        display: block !important; /* Destruye el CSS Grid para impresión */
+        width: 100% !important;
+    }
+
+    :global(.widget-card) {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        margin-bottom: 15px !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    /* Ajustes estrictos para la tabla */
+    .tableWrapper {
+        width: 100% !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    .noHoverTable {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        table-layout: fixed !important; /* 🛑 Obliga a la tabla a no salirse del papel */
+        word-wrap: break-word !important;
+    }
+
+    /* REDUCIMOS EL ESPACIADO INTERNO (PADDING) PARA IMPRIMIR */
+    .noHoverTable th, .noHoverTable td {
+        border: 1px solid #cbd5e1 !important;
+        color: black !important;
+        padding: 4px 8px !important; /* Arriba/Abajo 4px, Izq/Der 8px */
+        font-size: 9.5pt !important;
+        line-height: 1.2 !important; /* Texto más compacto */
+    }
+
+    .noHoverTable th {
+        background-color: #f8f9fa !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Totales elegantes */
+    .totalsWrapper { margin-top: 15px !important; }
+    .totalsBox {
+        background-color: #f8f9fa !important;
+        border: 1px solid #cbd5e1 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        width: 250px !important; /* Limitar ancho del totalizador */
+        padding: 15px !important;
+    }
+}

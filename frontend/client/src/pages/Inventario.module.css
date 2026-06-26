@@ -1,0 +1,208 @@
+/* src/pages/Inventario.module.css */
+
+/* =========================================================
+   CONTENEDORES Y ESTRUCTURA DE DISEÑO
+   ========================================================= */
+.tabsContainer {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+    flex-wrap: wrap; /* Vital para que los botones de tabs no se aplasten en celular */
+}
+
+.filterSucursal {
+    max-width: 300px;
+}
+
+/* --- Formato de Celdas de Datos --- */
+.stockGlobalCell {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.textRight { text-align: right; }
+.textCenter { text-align: center; }
+.textBold { font-weight: bold; }
+.noWrap { white-space: nowrap; }
+
+/* Indicadores Visuales de Flujo de Stock */
+.stockPositive { color: #059669; }
+.stockNegative { color: #dc2626; }
+
+/* --- Seccion de Gestion de Traspasos --- */
+.traspasosContainer {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.formSolicitudWrapper {
+    padding: 20px;
+    flex: 1;
+    min-width: 300px;
+    height: fit-content;
+}
+
+.listaSolicitudesWrapper {
+    flex: 2;
+    min-width: 300px; /* Reducido para celular */
+}
+
+.sectionTitle {
+    font-size: 1.2rem;
+    color: var(--color-primary, #1e3672);
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.sectionTitleNoMargin {
+    font-size: 1.2rem;
+    color: var(--color-primary, #1e3672);
+    margin: 0;
+}
+
+.solicitudesHeader {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.btnFullWidth {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.actionButtonsContainer {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.actionBtnSmall {
+    padding: 4px 8px;
+}
+
+/* =========================================================
+   ESTILOS DE TABLAS DE DATOS
+   ========================================================= */
+.noHoverTable th {
+    background-color: #1e3672 !important;
+    color: white !important;
+}
+
+.noHoverTable th:hover {
+    background-color: #ffffff !important;
+    color: #1e3672 !important;
+    border: solid 1px #1e3672 !important;
+    cursor: default;
+}
+
+/* =========================================================
+   COMPONENTE MODAL DE KARDEX (Responsivo)
+   ========================================================= */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99998; /* ¡AUMENTADO para tapar el Sidebar! */
+    padding: 10px; 
+}
+
+.modalKardexContent {
+    background-color: #ffffff; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    z-index: 99999; /* ¡AUMENTADO para estar encima de la capa oscura! */
+    max-width: 900px;
+    width: 100%; 
+    max-height: 95vh; 
+    display: flex;
+    flex-direction: column;
+    opacity: 1; 
+}
+
+.modalHeader {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    flex-shrink: 0; /* Evita que el header se achique */
+}
+
+.modalHeaderFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.modalTitle {
+    margin: 0;
+    border: none;
+    padding: 0;
+    font-size: 1.25rem;
+}
+
+.modalSubtitle {
+    margin-top: 5px;
+    font-size: 0.85rem;
+}
+
+.closeBtn {
+    font-size: 1.2rem;
+    padding: 2px 10px;
+    flex-shrink: 0;
+}
+
+.modalBody {
+    overflow-y: auto; /* Scroll vertical fluido */
+    overflow-x: hidden;
+    flex: 1;
+}
+
+.kardexTable {
+    font-size: 0.85rem;
+    white-space: nowrap; /* Previene que los textos en el Kardex se rompan en múltiples líneas */
+}
+
+.modalActions {
+    margin-top: 20px; 
+    text-align: right;
+    flex-shrink: 0;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 15px;
+}
+
+.buttonPrimary {
+    background-color: #1e3672 !important;
+    color: white !important;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buttonSecondary {
+    background-color: #6494ce !important;
+    color: #ffffff !important;
+    border: 2px solid #6494ce !important;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.colorPrimary {
+    color: #1e3672 !important;
+}
+
+.colorSecondary {
+    color: #6494ce !important;
+}

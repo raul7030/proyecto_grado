@@ -1,0 +1,48 @@
+/* src/pages/CotizacionesListPage.module.css */
+
+.pageContainer {
+    width: 100%; 
+    padding: 20px 15px;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+@media (min-width: 768px) {
+    .pageContainer {
+        padding: 30px;
+    }
+}
+
+/* Estilos personalizados de la tabla */
+.noHoverTable th {
+    background-color: #1e3672 !important;
+    color: white !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.noHoverTable th:hover {
+    background-color: #ffffff !important;
+    color: #1e3672 !important;
+    border: solid 1px #1e3672 !important;
+    cursor: default;
+}
+
+/* Utilidades de alineación */
+.textCenter {
+    text-align: center;
+}
+
+.textRight {
+    text-align: right;
+}
+
+.totalCell {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.05em;
+}
+
+.colorPrimary {
+    background-color: #1e3672 !important;
+    color: white !important;
+}
