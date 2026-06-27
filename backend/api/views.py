@@ -414,7 +414,7 @@ class StockSucursalViewSet(viewsets.ModelViewSet):
             )
 
     # --- B: REGISTRAR INGRESO (COMPRAS / IMPORTACIONES) ---
-    @action(detail=False, methods=['post'])
+    @action(detail=False, methods=['post'], url_path='ingreso')
     def registrar_ingreso(self, request):
         producto_id = request.data.get('producto')
         sucursal_id = request.data.get('sucursal')
