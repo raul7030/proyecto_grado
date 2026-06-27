@@ -248,7 +248,7 @@ const ClientesPage = () => {
                             </div>
 
                             <div className="mb-3">
-                                <label className="form-label fw-bold text-secondary">Correo Electrónico Corporativo</label>
+                                <label className="form-label fw-bold text-secondary">Correo Electrónico</label>
                                 <input 
                                     type="email" 
                                     className="form-control"
@@ -258,7 +258,7 @@ const ClientesPage = () => {
                             </div>
 
                             <div className="mb-4">
-                                <label className="form-label fw-bold text-secondary">Dirección Física Registrada</label>
+                                <label className="form-label fw-bold text-secondary">Dirección</label>
                                 <input 
                                     type="text" 
                                     className="form-control"
