@@ -282,7 +282,7 @@ const HomePage = () => {
                                 <div className={styles.pieChartLegend}>
                                     <span className="me-2"><span className={styles.legendColorSuccess}>●</span> Aceptada</span>
                                     <span className="me-2"><span className={styles.legendColorWarning}>●</span> Pendiente</span>
-                                    <span><span className={styles.legendColorDanger}>●</span> Vencida/Nula</span>
+                                    <span><span className={styles.legendColorDanger}>●</span> Vencida/Rechazada</span>
                                 </div>
                             </div>
                         </div>
