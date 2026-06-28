@@ -123,7 +123,7 @@ const DetalleCotizacionPage = () => {
                     <button onClick={() => navigate('/erp/cotizaciones')} className="btn-secondary mr-2">
                         ← Volver
                     </button>
-                    <button onClick={handleImprimir} className="btn-primary" style={{ marginLeft: '10px' }}>
+                    <button onClick={() => navigate(`/erp/cotizaciones/${cotizacion.id_cotizacion}/imprimir`)}>
                         🖨️ Imprimir
                     </button>
                 </div>

@@ -36,6 +36,7 @@ import ContactoPage from './pages/ContactoPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordConfirmPage from './pages/ResetPasswordConfirmPage';
 import ReportesPage from './pages/ReportesPage';
+import ImprimirCotizacionPage from './pages/ImprimirCotizacionPage';
 
 function App() {
     return (
@@ -86,6 +87,7 @@ function App() {
                         <Route path="reportes/analisis-stock" element={<ReportesAnalisisStockPage />} />
                         <Route path="solicitudes" element={<SolicitudesWebPage />} />
                         <Route path="reportes" element={<ReportesPage />} />
+                        <Route path="/erp/cotizaciones/:id/imprimir" element={<ImprimirCotizacionPage />} />
                     </Route>
 
                     {/* =========================================

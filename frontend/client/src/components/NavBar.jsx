@@ -68,7 +68,7 @@ const SideBar = () => {
 
             <div className={styles.sidebarFooter}>
                 <div style={{ display: isSidebarOpen ? 'block' : 'none' }} className={styles.userInfo}>
-                    <strong>{user?.username}</strong><br/>
+                    <strong>{user?.first_name} {user?.last_name}</strong><br/>
                     <small>{user?.rol}</small>
                 </div>
                 <button onClick={logoutUser} className={styles.logoutButton} title="Cerrar Sesión">

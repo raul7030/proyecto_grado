@@ -10,7 +10,8 @@ import {
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
-    const { esAdmin, sucursalUsuario } = usePermisos();
+    // CORRECCIÓN: Aquí es donde declaramos nombreSucursal correctamente
+    const { esAdmin, nombreSucursal } = usePermisos();
     const [loading, setLoading] = useState(true);
     
     const [cotizacionesRaw, setCotizacionesRaw] = useState([]);
@@ -170,8 +171,9 @@ const HomePage = () => {
             <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
                 <div>
                     <h1 className="h3 mb-1 text-dark fw-bold">Dashboard Estratégico</h1>
+                    {/* CORRECCIÓN: Quitamos la línea suelta de JS que rompía la vista */}
                     <p className="text-muted">
-                        {esAdmin ? 'Análisis consolidado de rendimiento global' : `Operativa activa: Sucursal ${sucursalUsuario || 'Asignada'}`}
+                        {esAdmin ? 'Análisis consolidado de rendimiento global' : `Operativa: Sucursal ${nombreSucursal}`}
                     </p>
                 </div>
                 
@@ -282,7 +284,7 @@ const HomePage = () => {
                                 <div className={styles.pieChartLegend}>
                                     <span className="me-2"><span className={styles.legendColorSuccess}>●</span> Aceptada</span>
                                     <span className="me-2"><span className={styles.legendColorWarning}>●</span> Pendiente</span>
-                                    <span><span className={styles.legendColorDanger}>●</span> Vencida/Nula</span>
+                                    <span><span className={styles.legendColorDanger}>●</span> Vencida/Rechazada</span>
                                 </div>
                             </div>
                         </div>

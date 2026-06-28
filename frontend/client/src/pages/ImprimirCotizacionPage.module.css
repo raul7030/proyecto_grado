@@ -1,0 +1,259 @@
+/* src/pages/ImprimirCotizacionPage.module.css */
+
+.hojaImpresion {
+    background-color: white;
+    color: black;
+    padding: 30px 40px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    max-width: 900px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.noPrint {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px dashed #ccc;
+    display: flex;
+    gap: 10px;
+}
+
+/* --- ESTILOS DE CABECERA Y LOGO --- */
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.seccionLogo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.imgLogo {
+    width: 120px; /* Ajusta este valor si el logo sale muy grande o pequeño */
+    height: auto;
+    object-fit: contain;
+}
+
+.tituloEmpresa {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.subtituloEmpresa {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.datosDocumento {
+    text-align: right;
+}
+
+.tipoDocumento {
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    color: #333;
+    letter-spacing: 2px;
+}
+
+.datosDocumento p {
+    margin: 3px 0;
+    font-size: 0.95rem;
+}
+
+.separador {
+    border-top: 2px solid #2c3e50;
+    margin: 15px 0;
+}
+
+/* --- RESTO DEL DOCUMENTO --- */
+.datosCliente {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.tablaDetalle {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.tablaDetalle th, .tablaDetalle td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 0.95rem;
+}
+
+.tablaDetalle th {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.textCenter { text-align: center; }
+.textRight { text-align: right; }
+
+.totales {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.totalFinal {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 5px;
+}
+
+.pieDePagina {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+/* --- LA MAGIA DE LA IMPRESORA --- */
+/* ... Deja todos tus estilos anteriores exactamente igual ... */
+
+/* --- LA MAGIA DE LA IMPRESORA (REFORZADA) --- */
+/* --- LA MAGIA DE LA IMPRESORA (SOLUCIÓN DEFINITIVA) --- */
+@media print {
+    /* 1. Ocultar los botones para que no salgan en el papel */
+    .noPrint {
+        display: none !important;
+    }
+    
+    /* 2. Ocultar ABSOLUTAMENTE TODO el sistema (menús, barras, fondos) */
+    :global(body *) {
+        visibility: hidden;
+    }
+
+    /* 3. Volver a hacer visible ÚNICAMENTE nuestra hoja y su texto */
+    .hojaImpresion, .hojaImpresion :global(*) {
+        visibility: visible !important;
+    }
+
+    /* 4. Mover la hoja a la esquina superior izquierda de la impresora, ignorando los menús ocultos */
+    .hojaImpresion {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding-bottom: 120px !important;
+    }
+
+    /* 5. Definir el tamaño Carta Oficial */
+    @page {
+        size: letter;
+        margin: 1cm;
+    }
+}
+
+/* --- ESTILOS DEL PIE DE PÁGINA --- */
+.pieDePagina {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #555;
+    border-top: 2px solid #ddd;
+    padding-top: 15px;
+    
+    /* Nos aseguramos de que en pantalla fluya con normalidad */
+    position: relative; 
+    bottom: auto;
+}
+
+.agradecimiento {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.infoSucursal p {
+    margin: 2px 0;
+}
+tr {
+        page-break-inside: avoid;
+    }
+
+.seccionCotizador {
+    margin-top: 60px; /* Le da espacio para separarlo de la tabla de totales */
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center; /* Lo centra en la hoja */
+}
+
+.firmaCotizador {
+    text-align: center;
+    width: 300px; /* Ancho de la zona de firma */
+}
+
+.lineaFirma {
+    border-top: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+.firmaCotizador p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* --- LA MAGIA DE LA IMPRESORA --- */
+@media print {
+    .noPrint {
+        display: none !important;
+    }
+    
+    :global(body *) {
+        visibility: hidden;
+    }
+
+    .hojaImpresion, .hojaImpresion :global(*) {
+        visibility: visible !important;
+    }
+
+    .hojaImpresion {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding-bottom: 120px !important; /* Espacio para que la tabla no pise el footer */
+    }
+
+    @page {
+        size: letter;
+        margin: 1cm;
+    }
+
+    /* AQUÍ VA EL TRUCO, SOLO PARA LA IMPRESORA */
+    .pieDePagina {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        background-color: white; 
+        padding-bottom: 20px; 
+    }
+    
+    tr {
+        page-break-inside: avoid;
+    }
+}
