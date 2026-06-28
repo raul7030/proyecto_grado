@@ -7,13 +7,20 @@ from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError, PermissionDenied
 from django.db import transaction
 from django.utils import timezone
-
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 # Importaciones de Django
 from django.contrib.auth.models import User
-
 # Importaciones para JWT
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+from rest_framework.permissions import AllowAny
+from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
 
 # Importaciones Locales (Modelos y Serializers)
 from .models import (
@@ -843,68 +850,115 @@ def ingresar_stock_manual(request):
 # ==============================================================================
 # 8. RECUPERACIÓN DE CONTRASEÑA
 # ==============================================================================
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str
-from django.core.mail import send_mail
-from django.conf import settings
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([AllowAny])  # Cualquiera puede pedir restablecer su clave
 def solicitar_recuperacion(request):
-    """Paso 1: El usuario envía su correo para pedir el restablecimiento."""
-    email = request.data.get('email')
+    """
+    Recibe el email del usuario, genera un token seguro y envía el enlace
+    de restablecimiento apuntando al Frontend en React.
+    """
+    email = request.data.get('email', '').strip()
+    
     if not email:
-        return Response({'error': 'Debes proporcionar un correo electrónico.'}, status=status.HTTP_400_BAD_REQUEST)
-
-    try:
-        user = User.objects.get(email=email)
-        
-        # Generar Token Seguro y Codificar el ID del usuario
-        uid = urlsafe_base64_encode(force_bytes(user.pk))
-        token = default_token_generator.make_token(user)
-
-        # Construir el enlace hacia React (Frontend)
-        # Ejemplo: http://localhost:5173/reset-password/MTU/abc-123xyz/
-        reset_link = f"{settings.FRONTEND_URL}/reset-password/{uid}/{token}/"
-
-        # Enviar Correo
-        send_mail(
-            subject='Recuperación de Contraseña - San Rafael',
-            message=f'Hola {user.username},\n\nHaz clic en el siguiente enlace para restablecer tu contraseña:\n\n{reset_link}\n\nSi no solicitaste este cambio, ignora este correo.',
-            from_email=settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'noreply@sanrafael.com',
-            recipient_list=[user.email],
-            fail_silently=False,
+        return Response({"error": "El correo electrónico es requerido."}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Buscar al usuario por email
+    user = User.objects.filter(email=email).first()
+    
+    # Por seguridad, si el usuario no existe, respondemos con éxito simulado 
+    # para evitar que atacantes adivinen qué correos están registrados.
+    if not user:
+        return Response(
+            {"message": "Si el correo está registrado, recibirás un enlace de recuperación en breve."},
+            status=status.HTTP_200_OK
         )
-
-        return Response({'mensaje': 'Si el correo existe, se han enviado las instrucciones.'}, status=status.HTTP_200_OK)
-
-    except User.DoesNotExist:
-        # Por seguridad, no revelamos si el correo existe o no a extraños.
-        return Response({'mensaje': 'Si el correo existe, se han enviado las instrucciones.'}, status=status.HTTP_200_OK)
+        
+    # Generar UID y Token únicos y seguros
+    uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+    token = default_token_generator.make_token(user)
+    
+    # URL DEL FRONTEND (En producción puedes cambiar localhost por el dominio del VPS)
+    frontend_url = "http://localhost:5173" 
+    link_recuperacion = f"{frontend_url}/password-reset/confirm/{uidb64}/{token}/"
+    
+    # Configurar el correo electrónico
+    asunto = "Restablecer Contraseña - SR System"
+    remitente = settings.DEFAULT_FROM_EMAIL
+    
+    html_content = f"""
+    <html>
+        <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+            <div style="max-width: 500px; margin: 0 auto; border: 1px solid #e2e8f0; padding: 25px; border-radius: 8px;">
+                <h2 style="color: #1e3672; text-align: center;">Distribuidora San Rafael</h2>
+                <p>Hola, <strong>{user.first_name or user.username}</strong>.</p>
+                <p>Recibimos una solicitud para restablecer la contraseña de tu cuenta en el sistema de gestión SR System.</p>
+                <p>Para continuar con el proceso, haz clic en el siguiente botón comercial (este enlace expirará pronto):</p>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="{link_recuperacion}" style="background-color: #1e3672; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block;">
+                        Restablecer Contraseña
+                    </a>
+                </div>
+                
+                <p style="font-size: 0.9rem; color: #64748b;">Si el botón no funciona, puedes copiar y pegar el siguiente enlace en tu navegador:</p>
+                <p style="font-size: 0.8rem; color: #1e3672; word-break: break-all;">{link_recuperacion}</p>
+                
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
+                <p style="font-size: 0.8rem; color: #94a3b8; text-align: center; margin-bottom: 0;">
+                    Si tú no solicitaste este cambio, puedes ignorar este correo de forma segura. Tu contraseña actual no sufrirá modificaciones.
+                </p>
+            </div>
+        </body>
+    </html>
+    """
+    
+    text_content = f"Hola. Para restablecer tu contraseña ingresa aquí: {link_recuperacion}"
+    
+    try:
+        # Enviar correo usando el SMTP configurado
+        msg = EmailMultiAlternatives(asunto, text_content, remitente, [user.email])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send(fail_silently=False)
+        
+        return Response(
+            {"message": "Si el correo está registrado, recibirás un enlace de recuperación en breve."},
+            status=status.HTTP_200_OK
+        )
+    except Exception as e:
+        return Response(
+            {"error": f"Error en el servidor de correo: {str(e)}"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def confirmar_recuperacion(request, uidb64, token):
-    """Paso 2: El usuario envía su nueva contraseña junto con el token."""
-    nueva_password = request.data.get('password')
+    """
+    Procesa el formulario final enviado desde React. Valida que el token 
+    y el UID sigan siendo válidos y actualiza la contraseña del usuario.
+    """
+    nueva_contrasena = request.data.get('password', '').strip()
     
-    if not nueva_password:
-        return Response({'error': 'Debes proporcionar la nueva contraseña.'}, status=status.HTTP_400_BAD_REQUEST)
-
+    if not nueva_contrasena:
+        return Response({"error": "La nueva contraseña es requerida."}, status=status.HTTP_400_BAD_REQUEST)
+    
+    if len(nueva_contrasena) < 6:
+        return Response({"error": "La contraseña debe tener al menos 6 caracteres."}, status=status.HTTP_400_BAD_REQUEST)
+        
     try:
-        # Decodificar el ID
+        # Decodificar el ID del usuario
         uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
-
-        # Verificar que el token sea válido (no usado y del mismo usuario)
-        if default_token_generator.check_token(user, token):
-            user.set_password(nueva_password)
-            user.save()
-            return Response({'mensaje': 'Contraseña restablecida correctamente. Ya puedes iniciar sesión.'}, status=status.HTTP_200_OK)
-        else:
-            return Response({'error': 'El enlace es inválido o ya expiró.'}, status=status.HTTP_400_BAD_REQUEST)
-            
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        return Response({'error': 'El enlace es inválido.'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "El enlace de recuperación no es válido o ha expirado."}, status=status.HTTP_400_BAD_REQUEST)
+        
+    # Verificar si el token es válido para este usuario específico
+    if default_token_generator.check_token(user, token):
+        # Aplicar la nueva contraseña con encriptación hash estándar de Django
+        user.set_password(nueva_contrasena)
+        user.save()
+        return Response({"message": "Tu contraseña ha sido actualizada con éxito."}, status=status.HTTP_200_OK)
+    else:
+        return Response({"error": "El token de seguridad ha expirado o ya fue utilizado."}, status=status.HTTP_400_BAD_REQUEST)

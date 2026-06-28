@@ -54,7 +54,7 @@ function App() {
                         <Route path="/servicios" element={<ServiciosPage />} />
                         <Route path="/contacto" element={<ContactoPage />} />
                         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-                        <Route path="/reset-password/:uid/:token" element={<ResetPasswordConfirmPage />} />
+                        <Route path="/password-reset/confirm/:uid/:token" element={<ResetPasswordConfirmPage />} />
                     </Route>
 
                     {/* =========================================

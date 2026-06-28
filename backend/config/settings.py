@@ -170,12 +170,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # --- Para Producción (Ejemplo con Gmail) ---
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'tu_correo@gmail.com' 
-# EMAIL_HOST_PASSWORD = 'tu_contraseña_de_aplicacion' # Clave generada en Google (no tu clave normal)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'alexraulaguilaralcocer@gmail.com' 
+EMAIL_HOST_PASSWORD = 'xkoq hnxb ptzi cqkm' # Clave generada en Google (no tu clave normal)
+DEFAULT_FROM_EMAIL = f"Distribuidora San Rafael <{EMAIL_HOST_USER}>"
 
 # URL base de tu Frontend (React) para que el enlace del correo apunte a la pantalla correcta
 FRONTEND_URL = 'http://localhost:5173' # Cambiar en producción a 'https://tu-dominio.com'
