@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.db import transaction
 from django.utils import timezone
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 # Importamos todos los modelos necesarios
 from .models import (
@@ -27,6 +28,32 @@ from .models import (
 # ==============================================================================
 # 1. SERIALIZERS DE USUARIOS Y AUTENTICACIÓN
 # ==============================================================================
+class MiTokenPersonalizadoSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Inyectamos los datos reales al payload del JWT
+        token['username'] = user.username
+        token['first_name'] = user.first_name
+        token['last_name'] = user.last_name
+
+        try:
+            perfil = user.perfilusuario
+            if perfil and perfil.sucursal:
+                token['sucursal_usuario'] = perfil.sucursal.nombre
+                token['sucursal_id'] = perfil.sucursal.id_sucursal
+            else:
+                token['sucursal_usuario'] = 'Principal'
+                token['sucursal_id'] = None
+                
+            if perfil and perfil.rol:
+                token['rol'] = perfil.rol.nombre_rol
+        except Exception:
+            token['sucursal_usuario'] = 'Principal'
+            token['sucursal_id'] = None
+
+        return token
 
 class RolSerializer(serializers.ModelSerializer):
     class Meta:
@@ -207,14 +234,15 @@ class CotizacionSerializer(serializers.ModelSerializer):
     vendedor_nombre = serializers.CharField(source='usuario_vendedor.username', read_only=True)
     sucursal_nombre = serializers.CharField(source='sucursal.nombre', read_only=True)
     
-    # 👇 CAMPO AÑADIDO (allow_null=True es clave para que no falle cuando NO viene de la web)
+    # AÑADIDO (allow_null=True es clave para que no falle cuando NO viene de la web)
     solicitud_web_id = serializers.IntegerField(write_only=True, required=False, allow_null=True)
+    sucursal_direccion = serializers.CharField(source='sucursal.direccion', read_only=True)
 
     class Meta:
         model = Cotizaciones
         fields = [
             'id_cotizacion', 'codigo_cotizacion', 'cliente', 'cliente_nombre',
-            'usuario_vendedor', 'vendedor_nombre', 'sucursal', 'sucursal_nombre',
+            'usuario_vendedor', 'vendedor_nombre', 'sucursal', 'sucursal_nombre', 'sucursal_direccion',
             'fecha_creacion', 'fecha_validez', 'estado', 'subtotal',
             'descuento', 'total', 'detalles', 'solicitud_web_id'
         ]

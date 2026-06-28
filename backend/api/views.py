@@ -305,17 +305,34 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-        try:
-            perfil = PerfilUsuario.objects.get(user=user)
-            token['rol'] = perfil.rol.nombre_rol
-            token['sucursal_id'] = perfil.sucursal.id_sucursal
-        except PerfilUsuario.DoesNotExist:
-            token['rol'] = None
-            token['sucursal_id'] = None
-
+        
+        # 1. Guardar datos básicos del usuario
         token['username'] = user.username
+        token['first_name'] = user.first_name
+        token['last_name'] = user.last_name
         token['is_superuser'] = user.is_superuser
         token['user_id'] = user.id
+
+        # 2. Extraer datos relacionados del Perfil (Roles y Sucursal)
+        try:
+            perfil = PerfilUsuario.objects.get(user=user)
+            
+            # Nombre y ID del Rol
+            token['rol'] = perfil.rol.nombre_rol if perfil.rol else None
+            
+            # Nombre y ID de la Sucursal
+            if perfil.sucursal:
+                token['sucursal_usuario'] = perfil.sucursal.nombre  # Para el texto del Dashboard
+                token['sucursal_id'] = perfil.sucursal.id_sucursal  # Para las validaciones lógicas
+            else:
+                token['sucursal_usuario'] = 'Principal'
+                token['sucursal_id'] = None
+                
+        except PerfilUsuario.DoesNotExist:
+            token['rol'] = None
+            token['sucursal_usuario'] = 'Principal'
+            token['sucursal_id'] = None
+
         return token
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -414,7 +431,7 @@ class StockSucursalViewSet(viewsets.ModelViewSet):
             )
 
     # --- B: REGISTRAR INGRESO (COMPRAS / IMPORTACIONES) ---
-    @action(detail=False, methods=['post'])
+    @action(detail=False, methods=['post'], url_path='ingreso')
     def registrar_ingreso(self, request):
         producto_id = request.data.get('producto')
         sucursal_id = request.data.get('sucursal')
