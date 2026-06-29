@@ -23,7 +23,7 @@ const CatalogoPage = () => {
     useEffect(() => {
         const obtenerProductos = async () => {
             try {
-                const respuesta = await fetch('http://localhost:8000/api/productos/');
+                const respuesta = await fetch('http://187.127.34.217/api/productos/');
                 if (!respuesta.ok) throw new Error('Hubo un problema al cargar el catálogo');
                 
                 const datos = await respuesta.json();
@@ -76,7 +76,7 @@ const CatalogoPage = () => {
         let rutaLimpia = rutaImagen;
         if (rutaLimpia.startsWith('/')) rutaLimpia = rutaLimpia.substring(1); 
         if (rutaLimpia.startsWith('media/')) rutaLimpia = rutaLimpia.substring(6); 
-        return `http://localhost:8000/media/${rutaLimpia}`;
+        return `http://187.127.34.217/media/${rutaLimpia}`;
     };
 
     // --- NUEVO: LÓGICA DE COTIZACIÓN ---
@@ -100,7 +100,7 @@ const CatalogoPage = () => {
         e.preventDefault();
         try {
             // Enviamos los datos por POST a la nueva ruta
-            await axios.post('http://localhost:8000/api/solicitudes-web/', formCotizacion);
+            await axios.post('http://187.127.34.217/api/solicitudes-web/', formCotizacion);
             
             alert(`¡Gracias ${formCotizacion.nombre}! Tu solicitud ha sido enviada. Un asesor se comunicará contigo pronto.`);
             
