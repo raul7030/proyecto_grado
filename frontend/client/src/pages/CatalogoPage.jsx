@@ -1,9 +1,12 @@
 // src/pages/CatalogoPage.jsx
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CatalogoPage.module.css';
 import axios from 'axios';
 
 const CatalogoPage = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [categoriaActiva, setCategoriaActiva] = useState('Todas');
     const [productoSeleccionado, setProductoSeleccionado] = useState(null); // Para el modal de stock
     
@@ -34,6 +37,30 @@ const CatalogoPage = () => {
         };
         obtenerProductos();
     }, []);
+
+    useEffect(() => {
+        // Si hay un producto en el state de la ruta y los productos ya cargaron
+        if (location.state?.productoDesdeChatbot && productos.length > 0) {
+            const prodChat = location.state.productoDesdeChatbot;
+            
+            // Buscamos el producto completo en el catálogo usando el SKU
+            const productoCompleto = productos.find(p => p.sku === prodChat.sku);
+            
+            if (productoCompleto) {
+                abrirCotizacionProducto(productoCompleto);
+            } else {
+                // Si por alguna razón no lo encuentra en la lista, usamos los datos del chat
+                abrirCotizacionProducto({
+                    nombre_producto: prodChat.nombre,
+                    sku: prodChat.sku
+                });
+            }
+            
+            // Limpiamos la "mochila" de la ruta para que el modal no se vuelva 
+            // a abrir solo si el usuario recarga la página web manualmente
+            navigate(location.pathname, { replace: true, state: {} });
+        }
+    }, [location.state, productos, navigate]);
 
     const categoriasDinamicas = ['Todas', ...new Set(productos.map(p => p.categoria_nombre))];
 
