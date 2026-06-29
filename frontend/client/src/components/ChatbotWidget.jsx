@@ -1,5 +1,6 @@
 // src/components/ChatbotWidget.jsx
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../api/axiosInstance';
 import styles from './ChatbotWidget.module.css';
 
@@ -8,6 +9,7 @@ import styles from './ChatbotWidget.module.css';
 // import imagenMascota from '../assets/mascota.png'; 
 
 const ChatbotWidget = () => {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([
@@ -69,7 +71,7 @@ const ChatbotWidget = () => {
                         // src={imagenMascota} 
                         
                         // OPCIÓN B: Si pusiste la imagen en la carpeta 'public/assets/'
-                        src="/images/mascota.png" // <- CAMBIA ESTA RUTA POR LA DE TU IMAGEN
+                        src="/public/images/mascota.png" // <- CAMBIA ESTA RUTA POR LA DE TU IMAGEN
                         
                         alt="Mascota Asesor Virtual San Rafael" 
                         // Usamos clases de Bootstrap para sombra y bordes redondeados si quieres
@@ -102,7 +104,16 @@ const ChatbotWidget = () => {
                                                 <div className="fw-bold text-dark">{p.nombre}</div>
                                                 <div className="text-muted small">SKU: {p.sku}</div>
                                                 <div className="text-success fw-bold">Bs. {p.precio}</div>
-                                                <button className="btn btn-sm btn-outline-primary w-100 mt-2">Ver Producto</button>
+                                                <button 
+                                                    className="btn btn-sm btn-outline-primary w-100 mt-2"
+                                                    onClick={() => {
+                                                        setIsOpen(false); // Cerramos el chat para que no estorbe
+                                                        // Navegamos al catálogo pasando el producto en el state
+                                                        navigate('/catalogo', { state: { productoDesdeChatbot: p } });
+                                                    }}
+                                                >
+                                                    Cotizar Producto
+                                                </button>
                                             </div>
                                         ))}
                                     </div>
