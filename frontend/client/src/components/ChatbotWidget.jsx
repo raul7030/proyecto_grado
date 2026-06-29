@@ -69,7 +69,7 @@ const ChatbotWidget = () => {
                         // src={imagenMascota} 
                         
                         // OPCIÓN B: Si pusiste la imagen en la carpeta 'public/assets/'
-                        src="/public/images/mascota.png" // <- CAMBIA ESTA RUTA POR LA DE TU IMAGEN
+                        src="/images/mascota.png" // <- CAMBIA ESTA RUTA POR LA DE TU IMAGEN
                         
                         alt="Mascota Asesor Virtual San Rafael" 
                         // Usamos clases de Bootstrap para sombra y bordes redondeados si quieres
