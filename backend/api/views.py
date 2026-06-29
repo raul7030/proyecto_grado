@@ -879,7 +879,7 @@ def solicitar_recuperacion(request):
     token = default_token_generator.make_token(user)
     
     # URL DEL FRONTEND (En producción puedes cambiar localhost por el dominio del VPS)
-    frontend_url = "http://localhost:5173" 
+    frontend_url = "http://187.127.34.217" 
     link_recuperacion = f"{frontend_url}/password-reset/confirm/{uidb64}/{token}/"
     
     # Configurar el correo electrónico
